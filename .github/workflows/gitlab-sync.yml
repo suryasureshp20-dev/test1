@@ -1,0 +1,23 @@
+name: Sync GitHub → GitLab
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  gitlab-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout GitHub code
+        uses: actions/checkout@v3
+
+      - name: Push to GitLab
+        run: |
+          git config --global user.name "GitHub Sync Bot"
+          git config --global user.email "suryasuresh.p20@gmail.com"
+          git remote add gitlab https://${GITLAB_TOKEN}@${GITLAB_REPO#https://}
+          git push gitlab main --force
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITLAB_REPO: ${{ secrets.GITLAB_REPO }}
