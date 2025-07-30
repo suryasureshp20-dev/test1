@@ -19,7 +19,7 @@ jobs:
           git config --global user.email "suryasuresh.p20@gmail.com"
 
           # Add GitLab remote with secure token access
-          git remote add gitlab https://glpat-abc123xyz456@gitlab.com/automationrealm/testing.git
+          git remote add gitlab https://oauth2:glpat-abc123xyz456@gitlab.com/automationrealm/testing.git
 
           # Push to GitLab
           git push gitlab main --force
