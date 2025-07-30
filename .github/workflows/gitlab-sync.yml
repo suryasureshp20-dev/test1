@@ -15,7 +15,7 @@ jobs:
 
       - name: Push to GitLab
         run: |
-          git config --global user.name "GitHub Sync Bot"
+          git config --global user.name "Surya Suresh"
           git config --global user.email "suryasuresh.p20@gmail.com"
 
           # Add GitLab remote with secure token access
