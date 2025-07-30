@@ -1,4 +1,4 @@
-name: Sync GitHub → GitLab
+name: Sync GitHub → GitLab (main → test)
 
 on:
   push:
@@ -12,16 +12,16 @@ jobs:
     steps:
       - name: Checkout GitHub code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Full clone required for pushing to new branches
 
-      - name: Push to GitLab
+      - name: Push to GitLab (main → test)
         run: |
           git config --global user.name "Surya Suresh"
           git config --global user.email "suryasuresh.p20@gmail.com"
-
-          # Add GitLab remote with secure token access
           git remote add gitlab https://oauth2:glpat-GQHG0Kv4rMrp2Q9_0nJFFG86MQp1Omg0aXR6Cw.01.121pxfxx8@gitlab.com/automationrealm/testing.git
-
-          # Push to GitLab
-          git push gitlab main --force
+          
+          # Push GitHub 'main' to GitLab 'test'
+          git push gitlab main:test  # DO NOT use --force
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
